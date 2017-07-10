@@ -1,0 +1,10 @@
+<h1><%= @question.title %></h1>
+<p><%= @question.body %></p>
+
+<h2>Answers</h2>
+
+<% @answers.each do |answer| %>
+<h4><%= answer.user.username %></h4>
+<div class="timestamp"><%= answer.created_at %></div>
+<p><%= answer.body %></p>
+<% end %>
