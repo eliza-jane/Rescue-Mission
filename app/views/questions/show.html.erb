@@ -2,9 +2,14 @@
 <p><%= @question.body %></p>
 
 <h2>Answers</h2>
-
+<% @answers = @answers.order('created_at DESC') %>
 <% @answers.each do |answer| %>
 <h4><%= answer.user.username %></h4>
 <div class="timestamp"><%= answer.created_at %></div>
 <p><%= answer.body %></p>
 <% end %>
+
+<h2>Hello, want to answer this?</h2>
+<%= render 'answers/form' %>
+
+<%= link_to 'Main Page', questions_path %>

@@ -1,7 +1,17 @@
 <h1>Questions</h1>
-
-<ul>
+<% @questions = @questions.order('created_at DESC') %>
+<table>
 <% @questions.each do |question| %>
-  <li><%= link_to question.title, question_path(question) %> || <%= question.user.username %></li>
+<br/>
+<td>
+  <tr>
+    <%= link_to question.title, question_path(question) %> ||
+    <%= question.user.username %>
+  </tr>
+    <tr><%= button_to "Edit", edit_question_path(question), method: :get%> <%= button_to "Destroy", question_path(question), method: :delete %></tr>
+</td>
+<br/>
 <% end %>
-</ul>
+</table>
+
+<%= link_to 'New Question', new_question_path %>

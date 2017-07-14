@@ -1,0 +1,45 @@
+<%= form_for(@question) do |f| %>
+
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="question-title">
+    <%= f.label :title, class: 'question-title label' %>
+    <div class="question-title input">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+
+  <div class="question-body">
+    <%= f.label :body, class: 'question-body label' %>
+    <div class="question-body input">
+      <%= f.text_area :body %>
+    </div>
+  </div>
+
+  <div class="question-username">
+    <% @default = "" %>
+    <% if !(@question.user.nil?) %>
+      <% @default = @question.user.username %>
+    <% end %>
+
+    <%= f.label :user, "Username", class: 'question-username label' %>
+    <div class="question-username input">
+      <%= f.text_field :user, value: @default %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit 'Submit', class: 'button' %>
+    <%= link_to 'Main Page', questions_path %>
+  </div>
+<% end %>
